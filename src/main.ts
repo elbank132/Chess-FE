@@ -1,6 +1,7 @@
 import './style.css'
 import Konva from 'konva'
 import { Chess } from 'chess.js'
+import { drawBoard } from './board'
 
 const stage = new Konva.Stage({
   container: 'app',
@@ -11,14 +12,7 @@ const stage = new Konva.Stage({
 const layer = new Konva.Layer()
 stage.add(layer)
 
-const background = new Konva.Rect({
-  x: 0,
-  y: 0,
-  width: 800,
-  height: 800,
-  fill: 'white',
-})
-layer.add(background)
+drawBoard(layer)
 layer.draw()
 
 const chess = new Chess()
