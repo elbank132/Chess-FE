@@ -1,5 +1,6 @@
 import './style.css'
 import Konva from 'konva'
+import './net/socket'
 import { drawBoard } from './board/board'
 import { renderPieces } from './board/pieces'
 import { attachDragHandlers } from './input/dragHandler'
