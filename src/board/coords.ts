@@ -3,12 +3,20 @@ export interface Coord {
   col: number
 }
 
-export function squareToPixel(row: number, col: number, squareSize: number) {
-  return { x: col * squareSize, y: row * squareSize }
+export type Orientation = 'w' | 'b'
+
+function orient(row: number, col: number, orientation: Orientation): Coord {
+  return orientation === 'b' ? { row: 7 - row, col: 7 - col } : { row, col }
 }
 
-export function pixelToSquare(x: number, y: number, squareSize: number): Coord {
-  return { row: Math.floor(y / squareSize), col: Math.floor(x / squareSize) }
+export function squareToPixel(row: number, col: number, squareSize: number, orientation: Orientation = 'w') {
+  const display = orient(row, col, orientation)
+  return { x: display.col * squareSize, y: display.row * squareSize }
+}
+
+export function pixelToSquare(x: number, y: number, squareSize: number, orientation: Orientation = 'w'): Coord {
+  const display = { row: Math.floor(y / squareSize), col: Math.floor(x / squareSize) }
+  return orient(display.row, display.col, orientation)
 }
 
 export function squareToAlgebraic(row: number, col: number): string {
