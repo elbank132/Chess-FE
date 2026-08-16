@@ -61,7 +61,7 @@ export class GameManager {
 
   canMove(): boolean {
     if (SKIP_MOVE_VALIDATION) {
-      return this.status === Status.ACTIVE && this.color !== null
+      return true
     }
     return this.status === Status.ACTIVE && this.color !== null && this.chess.turn() === this.color
   }
